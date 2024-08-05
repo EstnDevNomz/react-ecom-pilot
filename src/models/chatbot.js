@@ -1,1 +1,0 @@
-// Sendbird Chatbot Model
