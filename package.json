@@ -4,15 +4,22 @@
   "type": "module",
   "private": true,
   "dependencies": {
-    "@sendbird/chat": "^4.13.3",
+    "@sendbird/chat": "^4.2.3",
+    "@sendbird/uikit-react": "^3.14.14",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "dotenv": "^16.4.5",
+    "moment": "^2.29.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-scripts": "5.0.0",
     "recoil": "^0.7.7",
+    "styled-components": "^6.1.12",
+    "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -39,6 +46,15 @@
     ]
   },
   "devDependencies": {
-    "vite": "^5.3.5"
+    "@typescript-eslint/eslint-plugin": "^8.1.0",
+    "@typescript-eslint/parser": "^8.1.0",
+    "eslint": "^9.9.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "prettier": "^3.3.3",
+    "vite": "^5.3.5",
+    "vite-plugin-svgr": "^4.2.0"
   }
 }

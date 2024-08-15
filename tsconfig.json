@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": true,
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "types": ["vite/client", "vite-plugin-svgr/client"],
+    "baseUrl": "./src",
+    "paths": {
+      "@app/*": ["app/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules", "dist"]
+}
