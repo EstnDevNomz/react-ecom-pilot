@@ -8,6 +8,7 @@ import {
   MessageCollectionInitPolicy,
 } from '@sendbird/chat/groupChannel';
 import { sb, User } from '../sdk';
+import { InvitationPreference } from '@sendbird/chat/lib/__definition';
 
 export const channelHandlers = {
   onChannelsAdded: (context: any, channels: any) => {
@@ -189,7 +190,7 @@ export async function runAiChat(
     return [null, connectError];
   }
   // Set channel invitation preference
-  const result = await sb
+  const result: void | InvitationPreference = await sb
     .setChannelInvitationPreference(true)
     .catch((error) => {
       console.error(

@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './assets/images/logo.svg';
-import './styles/App.css';
+import { info } from '../features/chat/config/index.json';
 import {
   RecoilRoot,
   atom,
@@ -11,8 +11,11 @@ import {
 import { ThemeProvider } from 'styled-components';
 import { runAiChat } from '../features/chat';
 import { GroupChannelCreateParams } from '@sendbird/chat/groupChannel';
+import { App as SendbirdApp } from '@sendbird/uikit-react';
+import '@sendbird/uikit-react/dist/index.css';
+import './styles/App.css';
 
-const App: React.FC = () => {
+function App() {
   console.log('App started');
 
   const userId: string = '테스트유저';
@@ -34,25 +37,15 @@ const App: React.FC = () => {
   return (
     <RecoilRoot>
       <ThemeProvider theme={{}}>
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              Edit <code>src/App.jsx</code> and save to reload.
-            </p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
+        <div
+          className="App"
+          style={{ width: '100vw', height: '100vh', textAlign: 'left' }}
+        >
+          <SendbirdApp appId={info.appId} userId="테스트유저" />
         </div>
       </ThemeProvider>
     </RecoilRoot>
   );
-};
+}
 
 export default App;
