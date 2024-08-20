@@ -9,6 +9,7 @@
       name="description"
       content="Web site created using create-react-app"
     />
+    <link href="./src/widgets/DeskWidget/sass/widget.scss" rel="stylesheet" />
     <link rel="apple-touch-icon" href="/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -28,8 +29,16 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+
+    </div>
+    <div id='sb-desk' class='-sbd-widget'></div>
+    <div class='guide-balloon'>
+        <div class='emoji'>😀</div>
+        <div class='desc'>To try Desk Widget, please click the icon.</div>
+    </div>
     <script src="/src/app/index.tsx" type="module"></script>
+    <script type="module" src="./src/widgets/DeskWidget/js/login.js"></script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

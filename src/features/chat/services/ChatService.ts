@@ -8,7 +8,10 @@ import {
   MessageCollectionInitPolicy,
 } from '@sendbird/chat/groupChannel';
 import { sb, User } from '../sdk';
-import { InvitationPreference } from '@sendbird/chat/lib/__definition';
+import {
+  InvitationPreference,
+  ApplicationUserListQuery,
+} from '@sendbird/chat/lib/__definition';
 
 export const channelHandlers = {
   onChannelsAdded: (context: any, channels: any) => {
@@ -61,6 +64,12 @@ export async function connectUser(userId: string) {
   } catch (error: any) {
     return [null, error];
   }
+}
+
+export function disconnectUser() {
+  console.log('Disconnecting from Sendbird...');
+  // Disconnect from Sendbird
+  sb.disconnect();
 }
 
 export async function createGroupChannel(params: GroupChannelCreateParams) {
@@ -184,11 +193,18 @@ export async function runAiChat(
   message: string,
   params: GroupChannelCreateParams,
 ) {
+  const listQuery: ApplicationUserListQuery =
+    sb.createApplicationUserListQuery();
+  listQuery.next().then((users) => {
+    console.log('Users: ', users);
+  });
+
   const [user, connectError] = await connectUser(userId);
   if (connectError) {
     console.error('Error connecting user: ', connectError.message);
     return [null, connectError];
   }
+
   // Set channel invitation preference
   const result: void | InvitationPreference = await sb
     .setChannelInvitationPreference(true)
@@ -216,14 +232,15 @@ export async function runAiChat(
     await createdChannel.inviteWithUserIds([botId]);
     sendUserMessage(createdChannel, message);
     loadMessages(createdChannel, messageHandlers);
-  } else {
-    try {
-      await loadedChannel.inviteWithUserIds(params.invitedUserIds);
-      sendUserMessage(loadedChannel, message);
-      loadMessages(loadedChannel, messageHandlers);
-    } catch (error: any) {
-      console.error('Error inviting users to channel: ', error.message);
-      return [null, error];
-    }
+    return [createdChannel, null];
+  }
+
+  try {
+    await loadedChannel.inviteWithUserIds(params.invitedUserIds);
+    sendUserMessage(loadedChannel, message);
+    loadMessages(loadedChannel, messageHandlers);
+  } catch (error: any) {
+    console.error('Error inviting users to channel: ', error.message);
+    return [null, error];
   }
 }
